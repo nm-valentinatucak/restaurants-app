@@ -1,7 +1,10 @@
+@use '../../../../styles/settings/variables' as v;
+
 .drawerItem {
   width: 100%;
   background: transparent;
   text-decoration: none;
+  color: v.$light !important;
 }
 
 .drawerItemArrow {
@@ -10,10 +13,10 @@
 
 .drawerItemActive,
 .drawerItemActive:focus {
-  background: #0369a1;
-  color: #e0f2fe;
+  background: v.$primary;
+  color: v.$light !important;
 }
 
 .drawerItemIconActive {
-  color: #0369a1;
+  color: v.$primary;
 }

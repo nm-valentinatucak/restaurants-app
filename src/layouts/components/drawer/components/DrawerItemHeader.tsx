@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import style from './DrawerItem.module.css';
+import style from './DrawerItem.module.scss';
 import clsx from 'clsx';
 import DrawerItem from './DrawerItem';
 
 interface DrawerItemHeaderProps {
-  text: string;
+  name: string;
   icon?: string;
-  items?: any[];
-  route?: string;
+  children?: any[];
+  path?: string;
   depth?: number;
   isDrawerExpanded: boolean;
   isHoveringDrawer: boolean;
@@ -19,10 +19,10 @@ const resolveLinkPath = (parentTo: string, childTo: string): string =>
 
 const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
   const {
-    text,
+    name,
     icon,
-    items,
-    route,
+    children,
+    path,
     depth,
     isDrawerExpanded,
     isHoveringDrawer,
@@ -30,7 +30,7 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
   const location = useLocation();
 
   const [isNavItemExpanded, setIsNavItemExpanded] = useState(
-    location.pathname.includes(route || '')
+    location.pathname.includes(path || '')
   );
 
   const onExpandChange = (
@@ -56,7 +56,7 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
       >
         {icon ? <span className={clsx('k-icon k-mr-4', icon)} /> : null}
         <div className='k-display-flex k-flex-grow k-justify-content-between'>
-          <span>{text}</span>
+          <span>{name}</span>
           <span
             className={clsx(
               'k-icon k-i-chevron-down',
@@ -74,14 +74,14 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
             !isDrawerExpanded && !isHoveringDrawer && 'k-display-none'
           )}
         >
-          {items?.map((item, index) => {
-            const key = `${item.text}-${index}`;
+          {children?.map((item, index) => {
+            const key = `${item.name}-${index}`;
             return (
               <DrawerItem
                 key={key}
                 {...item}
                 depth={depth ? depth + 1 : undefined}
-                route={resolveLinkPath(route || '', item.route || '')}
+                route={resolveLinkPath(path || '', item.path || '')}
                 isDrawerExpanded={isDrawerExpanded}
                 isHoveringDrawer={isHoveringDrawer}
               />

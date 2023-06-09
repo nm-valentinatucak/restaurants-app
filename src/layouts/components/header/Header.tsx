@@ -9,7 +9,7 @@ import {
 import { Badge, BadgeContainer } from '@progress/kendo-react-indicators';
 import { Form, Field, FormElement } from '@progress/kendo-react-form';
 import { Input } from '@progress/kendo-react-inputs';
-import style from './Header.module.css';
+import style from './Header.module.scss';
 import clsx from 'clsx';
 
 const kendokaAvatar =
@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <div>
-      <AppBar>
+      <AppBar className={style.header}>
         <AppBarSpacer
           style={{
             width: 32,

@@ -5,10 +5,10 @@ import {
 } from '@progress/kendo-react-layout';
 import clsx from 'clsx';
 import DrawerItem from './components/DrawerItem';
-import { drawerItems } from './config/drawerItems';
-import style from './Drawer.module.css';
+import style from './Drawer.module.scss';
 import { ReactNode } from 'react';
 import { useDrawerState } from './hooks/useDrawerState';
+import { Routes } from '../../../routes/Routes';
 
 interface AppDrawerProps {
   children: ReactNode;
@@ -26,7 +26,7 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
       mode={'push'}
       mini={true}
     >
-      <DrawerNavigation ref={drawerRef}>
+      <DrawerNavigation ref={drawerRef} className={style.drawerNavigation}>
         <div className={style.titleContainer}>
           {isDrawerExpanded || isHoveringDrawer ? (
             <h1 className={style.title}>RestaurantsApp</h1>
@@ -48,16 +48,18 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
           </button>
         </div>
         <ul className='k-drawer-items'>
-          {drawerItems.map((item, idx) => {
-            return (
-              <DrawerItem
-                key={`${item.text}-${idx}`}
-                {...item}
-                isDrawerExpanded={isDrawerExpanded}
-                isHoveringDrawer={isHoveringDrawer}
-              />
-            );
-          })}
+          {Routes.find((item) => item.name === 'Home')
+            ?.children?.filter((item) => item.name !== 'Profile')
+            ?.map((route, index) => {
+              return (
+                <DrawerItem
+                  key={`${route.name}-${index}`}
+                  {...route}
+                  isDrawerExpanded={isDrawerExpanded}
+                  isHoveringDrawer={isHoveringDrawer}
+                />
+              );
+            })}
         </ul>
       </DrawerNavigation>
       <DrawerContent>{props.children}</DrawerContent>

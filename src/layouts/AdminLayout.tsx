@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import Header from './components/header/Header';
 import Drawer from './components/drawer/Drawer';
 import Breadcrumbs from './components/breadcrumbs/Breadcrumbs';
 
 const breadcrumbsContainerStyle = { transform: 'translateX(-0.5rem)' };
 
-const DashboardLayout = () => {
+const AdminLayout = () => {
   return (
     <Drawer>
       <Header />
@@ -22,4 +23,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default AdminLayout;

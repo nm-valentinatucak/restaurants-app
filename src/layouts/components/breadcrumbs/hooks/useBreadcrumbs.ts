@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 interface BreadcrumbItem {
   id: string;
-  text: string;
+  name: string;
   iconClass?: string;
 }
 
@@ -23,8 +23,8 @@ export const useBreadcrumbs = (navConfig: any): BreadcrumbsResult => {
 
       return [
         {
-          id: home.route,
-          text: home.text,
+          id: home.path,
+          name: home.name,
           iconClass: home.icon,
         },
       ];
@@ -42,28 +42,28 @@ export const useBreadcrumbs = (navConfig: any): BreadcrumbsResult => {
       // Find the root drawer item
       if (!breadcrumbsList.length) {
         currentDrawerItem = navConfig.find(
-          (item: any) => item.route === `/${currentPathPart}`
+          (item: any) => item.path === `/${currentPathPart}`
         );
       } else {
         // The currentDrawerItem is a drawer item header so we need to find the matching drawer item inside of the `items` array
         currentDrawerItem = currentDrawerItem.items.find(
-          (item: any) => item.route === currentPathPart
+          (item: any) => item.path === currentPathPart
         );
       }
 
       // Add config for the current url path part
       breadcrumbsList.push({
-        id: currentDrawerItem.route,
-        text: currentDrawerItem.text,
+        id: currentDrawerItem?.path,
+        name: currentDrawerItem?.name,
         // Include the icon class if one is present
-        ...(currentDrawerItem.icon && {
-          iconClass: currentDrawerItem.icon,
+        ...(currentDrawerItem?.icon && {
+          iconClass: currentDrawerItem?.icon,
         }),
       });
 
       // If the current drawer item doesn't have any nested items
       // it means we need to stop, as we have reached the last navigation item
-      if (!currentDrawerItem.items) {
+      if (!currentDrawerItem?.children) {
         break;
       }
     }

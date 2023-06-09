@@ -1,5 +1,7 @@
+@use '../../../styles/settings/variables' as v;
+
 .drawer {
-  min-height: inherit;
+  min-height: 100vh;
 }
 
 .drawerTogglerBtn {
@@ -19,9 +21,17 @@
   justify-content: space-between;
   align-items: center;
   min-height: 56px;
+  background-color: v.$dark;
+  color: v.$light;
 }
 
 .title {
   font-size: 1.25rem;
   margin: 0rem 1rem;
+}
+
+.drawerNavigation {
+  background-color: v.$dark !important;
+  color: v.$light;
+  min-height: 100% !important;
 }

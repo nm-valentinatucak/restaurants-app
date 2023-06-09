@@ -1,14 +1,14 @@
 import DrawerItemHeader from './DrawerItemHeader';
 import { NavLink } from 'react-router-dom';
-import style from './DrawerItem.module.css';
+import style from './DrawerItem.module.scss';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
 interface DrawerItemProps {
-  text: string;
+  name: string;
   icon?: string;
-  route?: string;
-  items?: any;
+  path?: string;
+  children?: any;
   depth?: number;
   isDrawerExpanded: boolean;
   isHoveringDrawer: boolean;
@@ -16,16 +16,16 @@ interface DrawerItemProps {
 
 const DrawerItem: React.FC<DrawerItemProps> = (props) => {
   const {
-    text,
+    name,
     icon,
-    route,
-    items,
+    path,
+    children,
     depth = 0,
     isDrawerExpanded,
     isHoveringDrawer,
   } = props;
 
-  if (items) {
+  if (children) {
     return (
       <DrawerItemHeader
         {...props}
@@ -45,7 +45,7 @@ const DrawerItem: React.FC<DrawerItemProps> = (props) => {
           isActive && style.drawerItemActive
         );
       }}
-      to={route || ''}
+      to={path || ''}
       style={{
         paddingLeft: `${1 + (depth > 1 ? (depth + 5.5) * 0.25 : 0)}rem`,
       }}
@@ -53,7 +53,7 @@ const DrawerItem: React.FC<DrawerItemProps> = (props) => {
       {icon ? (
         <span className={clsx('k-icon k-mr-4 k-display-inline-flex', icon)} />
       ) : null}
-      <span>{text}</span>
+      <span>{name}</span>
     </NavLink>
   );
 };
