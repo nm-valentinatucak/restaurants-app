@@ -6,14 +6,19 @@ import {
 } from '@progress/kendo-react-form';
 import { Input } from '@progress/kendo-react-inputs';
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../../../../assets/logo.png';
 
 import styles from './LoginForm.module.scss';
 
 const LoginForm = () => {
-  const handleSubmit = (dataItem: { [name: string]: void }) =>
+  const navigateTo = useNavigate();
+
+  const handleSubmit = (dataItem: { [name: string]: void }) => {
     alert(JSON.stringify(dataItem, null, 2));
+    navigateTo('/dashboard');
+  };
 
   const emailRegex = new RegExp(/\S+@\S+\.\S+/);
   const emailValidator = (value: string) =>
@@ -41,7 +46,12 @@ const LoginForm = () => {
               validator={emailValidator}
             />
 
-            <Field name={'password'} component={Input} label={'Password'} />
+            <Field
+              name={'password'}
+              type={'password'}
+              component={Input}
+              label={'Password'}
+            />
           </fieldset>
           <div className={clsx('k-form-buttons', styles.buttonWrapper)}>
             <button

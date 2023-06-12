@@ -1,8 +1,6 @@
-@use '../../../../styles/settings/variables' as v;
-
 .header {
-  background-color: v.$dark !important;
-  color: v.$light !important;
+  background-color: $dark !important;
+  color: $light !important;
 }
 
 .title {
@@ -32,6 +30,6 @@
 .searchInput {
   padding-left: 2.25rem !important;
   width: 14rem !important;
-  background-color: v.$dark !important;
-  color: v.$light !important;
+  background-color: $dark !important;
+  color: $light !important;
 }

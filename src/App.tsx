@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import { Routes } from './routes/Routes';
 
-import './App.scss';
+import './styles/styles.scss';
 
 const App = () => {
   const prepareRoutes = useRoutes(Routes);

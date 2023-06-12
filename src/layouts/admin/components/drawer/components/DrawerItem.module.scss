@@ -1,15 +1,13 @@
-@use '../../../../../styles/settings/variables' as v;
-
 .drawerItem {
   width: 100%;
   background: transparent;
   text-decoration: none;
-  color: v.$light !important;
-  font-family: v.$font;
+  color: $light !important;
+  font-family: $font;
 
   &:hover {
     background: rgba(250, 250, 250, 0.08) !important;
-    color: v.$light !important;
+    color: $light !important;
   }
 }
 
@@ -21,5 +19,5 @@
 .drawerItemActive:focus,
 .drawerItemActive:hover {
   background: rgba(250, 250, 250, 0.08) !important;
-  color: v.$light !important;
+  color: $light !important;
 }

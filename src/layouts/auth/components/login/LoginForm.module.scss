@@ -1,7 +1,5 @@
-@use '../../../../styles/settings/variables' as v;
-
 .formElement {
-  background-color: v.$light;
+  background-color: $light;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -28,12 +26,12 @@
       gap: 12px;
 
       .title {
-        color: v.$dark;
+        color: $dark;
         font-size: 24px;
       }
 
       .subtitle {
-        color: v.$gray;
+        color: $gray;
         font-size: 14px;
       }
     }
@@ -43,8 +41,8 @@
     width: 100%;
 
     .button {
-      background-color: v.$primary !important;
-      color: v.$light;
+      background-color: $primary !important;
+      color: $light;
       width: 100%;
     }
   }
