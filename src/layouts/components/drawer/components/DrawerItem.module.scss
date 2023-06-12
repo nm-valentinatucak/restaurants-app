@@ -5,6 +5,12 @@
   background: transparent;
   text-decoration: none;
   color: v.$light !important;
+  font-family: v.$font;
+
+  &:hover {
+    background: rgba(250, 250, 250, 0.08) !important;
+    color: v.$light !important;
+  }
 }
 
 .drawerItemArrow {
@@ -12,11 +18,8 @@
 }
 
 .drawerItemActive,
-.drawerItemActive:focus {
-  background: v.$primary;
+.drawerItemActive:focus,
+.drawerItemActive:hover {
+  background: rgba(250, 250, 250, 0.08) !important;
   color: v.$light !important;
-}
-
-.drawerItemIconActive {
-  color: v.$primary;
 }

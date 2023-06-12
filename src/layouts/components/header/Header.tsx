@@ -7,37 +7,12 @@ import {
   MenuItem,
 } from '@progress/kendo-react-layout';
 import { Badge, BadgeContainer } from '@progress/kendo-react-indicators';
-import { Form, Field, FormElement } from '@progress/kendo-react-form';
-import { Input } from '@progress/kendo-react-inputs';
+
+import placeholder from '../../../assets/placeholder.jpg';
+
 import style from './Header.module.scss';
-import clsx from 'clsx';
-
-const kendokaAvatar =
-  'https://demos.telerik.com/kendo-ui/content/web/Customers/RICSU.jpg';
-
-interface FormInputProps {
-  [key: string]: any;
-}
-
-const FormInput: React.FC<FormInputProps> = (props) => {
-  return (
-    <div className='k-relative'>
-      <span
-        className={clsx(
-          'k-absolute k-icon k-i-search k-ml-2 k-pl-4',
-          style.searchIcon
-        )}
-      />
-      <Input className={style.searchInput} {...props} />
-    </div>
-  );
-};
 
 const Header = () => {
-  const onSearch = (q: string) => {
-    console.log('on search', q);
-  };
-
   return (
     <div>
       <AppBar className={style.header}>
@@ -46,30 +21,6 @@ const Header = () => {
             width: 32,
           }}
         />
-
-        <AppBarSection>
-          <Form
-            initialValues={{
-              search: '',
-            }}
-            onSubmit={onSearch}
-            render={(formRenderProps) => {
-              return (
-                <FormElement>
-                  <fieldset className='k-form-fieldset'>
-                    <Field
-                      id='search'
-                      name='search'
-                      placeholder='Search'
-                      value={formRenderProps.valueGetter('search')}
-                      component={FormInput}
-                    />
-                  </fieldset>
-                </FormElement>
-              );
-            }}
-          />
-        </AppBarSection>
 
         <AppBarSpacer />
 
@@ -92,7 +43,7 @@ const Header = () => {
               render={() => {
                 return (
                   <Avatar type='image'>
-                    <img src={kendokaAvatar} alt='Avatar' />
+                    <img src={placeholder} alt='Avatar' />
                   </Avatar>
                 );
               }}
