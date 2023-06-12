@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import style from './DrawerItem.module.scss';
+import styles from './DrawerItem.module.scss';
 import clsx from 'clsx';
 import DrawerItem from './DrawerItem';
 
@@ -45,7 +45,7 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
       <button
         className={clsx(
           'k-drawer-item k-text-left k-d-flex k-border-0 k-pr-4 k-py-4 k-w-full',
-          style.drawerItem
+          styles.drawerItem
         )}
         style={{
           paddingLeft: `${
@@ -60,7 +60,7 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
           <span
             className={clsx(
               'k-icon k-i-chevron-down',
-              style.drawerItemArrow,
+              styles.drawerItemArrow,
               isNavItemExpanded && 'k-rotate-180'
             )}
           />
@@ -70,7 +70,7 @@ const DrawerItemHeader: React.FC<DrawerItemHeaderProps> = (props) => {
       {isNavItemExpanded && (
         <div
           className={clsx(
-            style.navChildrenBlock,
+            styles.navChildrenBlock,
             !isDrawerExpanded && !isHoveringDrawer && 'k-display-none'
           )}
         >

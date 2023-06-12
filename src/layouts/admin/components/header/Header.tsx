@@ -8,14 +8,14 @@ import {
 } from '@progress/kendo-react-layout';
 import { Badge, BadgeContainer } from '@progress/kendo-react-indicators';
 
-import placeholder from '../../../assets/placeholder.jpg';
+import placeholder from '../../../../assets/placeholder.jpg';
 
-import style from './Header.module.scss';
+import styles from './Header.module.scss';
 
 const Header = () => {
   return (
     <div>
-      <AppBar className={style.header}>
+      <AppBar className={styles.header}>
         <AppBarSpacer
           style={{
             width: 32,

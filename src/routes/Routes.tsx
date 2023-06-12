@@ -1,4 +1,5 @@
-import AdminLayout from '../layouts/AdminLayout';
+import AdminLayout from '../layouts/admin/AdminLayout';
+import AuthLayout from '../layouts/auth/AuthLayout';
 import { CustomRouteObject } from '../types/typeDefinitions';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -6,7 +7,7 @@ export const Routes: CustomRouteObject[] = [
   {
     path: '/login',
     name: 'Login',
-    element: <div>AuthLayout</div>,
+    element: <AuthLayout />,
   },
   {
     path: '/',

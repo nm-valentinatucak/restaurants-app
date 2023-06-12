@@ -5,10 +5,10 @@ import {
 } from '@progress/kendo-react-layout';
 import clsx from 'clsx';
 import DrawerItem from './components/DrawerItem';
-import style from './Drawer.module.scss';
+import styles from './Drawer.module.scss';
 import { ReactNode } from 'react';
 import { useDrawerState } from './hooks/useDrawerState';
-import { Routes } from '../../../routes/Routes';
+import { Routes } from '../../../../routes/Routes';
 
 interface AppDrawerProps {
   children: ReactNode;
@@ -20,29 +20,29 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
 
   return (
     <Drawer
-      className={style.drawer}
+      className={styles.drawer}
       expanded={isDrawerExpanded || isHoveringDrawer}
       position={'start'}
       mode={'push'}
       mini={true}
     >
-      <DrawerNavigation ref={drawerRef} className={style.drawerNavigation}>
-        <div className={style.titleContainer}>
+      <DrawerNavigation ref={drawerRef} className={styles.drawerNavigation}>
+        <div className={styles.titleContainer}>
           {isDrawerExpanded || isHoveringDrawer ? (
-            <h1 className={style.title}>RestaurantsApp</h1>
+            <h1 className={styles.title}>RestaurantsApp</h1>
           ) : null}
           <button
             className={clsx(
               'k-button k-button-md k-rounded-md k-button-flat k-button-flat-base',
-              style.drawerTogglerBtn
+              styles.drawerTogglerBtn
             )}
             onClick={toggleDrawer}
           >
             <span
               className={clsx(
                 `k-icon k-i-arrow-chevron-right`,
-                style.drawerTogglerIcon,
-                isDrawerExpanded && style.drawerTogglerIconOpen
+                styles.drawerTogglerIcon,
+                isDrawerExpanded && styles.drawerTogglerIconOpen
               )}
             />
           </button>

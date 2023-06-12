@@ -1,0 +1,10 @@
+@use '../../styles/settings/variables' as v;
+
+.authLayout {
+  background-color: v.$dark;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

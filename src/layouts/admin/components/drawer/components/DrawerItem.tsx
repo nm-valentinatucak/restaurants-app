@@ -1,8 +1,7 @@
 import DrawerItemHeader from './DrawerItemHeader';
 import { NavLink } from 'react-router-dom';
-import style from './DrawerItem.module.scss';
+import styles from './DrawerItem.module.scss';
 import clsx from 'clsx';
-import { ReactNode } from 'react';
 
 interface DrawerItemProps {
   name: string;
@@ -41,8 +40,8 @@ const DrawerItem: React.FC<DrawerItemProps> = (props) => {
       className={({ isActive }) => {
         return clsx(
           'k-drawer-item k-text-left k-d-flex k-border-0 k-pr-4 k-py-4 k-w-full',
-          style.drawerItem,
-          isActive && style.drawerItemActive
+          styles.drawerItem,
+          isActive && styles.drawerItemActive
         );
       }}
       to={path || ''}
