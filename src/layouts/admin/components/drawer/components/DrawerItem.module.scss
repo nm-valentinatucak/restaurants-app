@@ -19,5 +19,6 @@
 .drawerItemActive:focus,
 .drawerItemActive:hover {
   background: rgba(250, 250, 250, 0.08) !important;
+  border-left: 3px solid $primary !important;
   color: $light !important;
 }

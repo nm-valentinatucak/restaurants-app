@@ -7,6 +7,7 @@ import {
   MenuItem,
 } from '@progress/kendo-react-layout';
 import { Badge, BadgeContainer } from '@progress/kendo-react-indicators';
+import { NavLink } from 'react-router-dom';
 
 import placeholder from '../../../../assets/placeholder.jpg';
 
@@ -38,7 +39,7 @@ const Header = () => {
         </AppBarSection>
 
         <AppBarSection>
-          <Menu>
+          <Menu className={styles.menu}>
             <MenuItem
               render={() => {
                 return (
@@ -48,9 +49,24 @@ const Header = () => {
                 );
               }}
             >
-              <MenuItem text='Account' />
-              <MenuItem text='Settings' />
-              <MenuItem text='Logout' />
+              <MenuItem
+                render={() => {
+                  return (
+                    <NavLink to={'/profile'} className={styles.navLink}>
+                      Profile
+                    </NavLink>
+                  );
+                }}
+              />
+              <MenuItem
+                render={() => {
+                  return (
+                    <NavLink to={'/login'} className={styles.navLink}>
+                      Logout
+                    </NavLink>
+                  );
+                }}
+              />
             </MenuItem>
           </Menu>
         </AppBarSection>

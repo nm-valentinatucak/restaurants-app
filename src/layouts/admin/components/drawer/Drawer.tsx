@@ -3,12 +3,14 @@ import {
   DrawerContent,
   DrawerNavigation,
 } from '@progress/kendo-react-layout';
-import clsx from 'clsx';
-import DrawerItem from './components/DrawerItem';
-import styles from './Drawer.module.scss';
 import { ReactNode } from 'react';
+import clsx from 'clsx';
+
+import DrawerItem from './components/DrawerItem';
 import { useDrawerState } from './hooks/useDrawerState';
 import { Routes } from '../../../../routes/Routes';
+
+import styles from './Drawer.module.scss';
 
 interface AppDrawerProps {
   children: ReactNode;
@@ -40,14 +42,14 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
           >
             <span
               className={clsx(
-                `k-icon k-i-arrow-chevron-right`,
+                `k-icon k-i-menu`,
                 styles.drawerTogglerIcon,
                 isDrawerExpanded && styles.drawerTogglerIconOpen
               )}
             />
           </button>
         </div>
-        <ul className='k-drawer-items'>
+        <ul className={clsx('k-drawer-items', styles.drawerItems)}>
           {Routes.find((item) => item.name === 'Home')
             ?.children?.filter((item) => item.name !== 'Profile')
             ?.map((route, index) => {

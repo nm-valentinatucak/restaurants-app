@@ -1,6 +1,7 @@
 .header {
   background-color: $dark !important;
   color: $light !important;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.24);
 }
 
 .title {
@@ -23,13 +24,12 @@
   color: #84cef1;
 }
 
-.searchIcon {
-  z-index: 1;
+.menu {
+  color: $light !important;
 }
 
-.searchInput {
-  padding-left: 2.25rem !important;
-  width: 14rem !important;
-  background-color: $dark !important;
-  color: $light !important;
+.navLink {
+  text-decoration: none !important;
+  font-family: $font;
+  color: $dark;
 }
