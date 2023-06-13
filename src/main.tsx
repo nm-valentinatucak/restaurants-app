@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Router>
-    {/* <Provider store={store}> */}
-    <App />
-    {/* </Provider> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Router>
 );

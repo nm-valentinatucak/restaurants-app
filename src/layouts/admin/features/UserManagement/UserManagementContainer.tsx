@@ -6,7 +6,7 @@ import { User } from '../../../../types/typeDefinitions';
 
 import styles from './UserManagement.module.scss';
 
-const UserManagement = () => {
+const UserManagementContainer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<number>();
   const [user, setUser] = useState<User>();
@@ -41,4 +41,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default UserManagementContainer;

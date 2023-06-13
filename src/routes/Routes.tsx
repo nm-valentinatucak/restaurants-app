@@ -1,5 +1,5 @@
 import AdminLayout from '../layouts/admin/AdminLayout';
-import UserManagement from '../layouts/admin/features/UserManagement/UserManagement';
+import UserManagement from '../layouts/admin/features/UserManagement/UserManagementContainer';
 import AuthLayout from '../layouts/auth/AuthLayout';
 import { CustomRouteObject } from '../types/typeDefinitions';
 import ProtectedRoute from './ProtectedRoute';

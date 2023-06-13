@@ -1,22 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { UserManagementApi } from '../features/admin/UserManagement/UserManagementApi';
-// import { AuthApi } from '../features/auth/AuthApi';
-// import userManagementReducer from '../features/admin/UserManagement/UserManagementState';
-// import profileStateReducer from '../features/admin/Profile/ProfileState';
+import { AuthApi } from '../layouts/auth/hooks/AuthApi';
 
 export const store = configureStore({
   reducer: {
-    // [UserManagementApi.reducerPath]: UserManagementApi.reducer,
-    // [AuthApi.reducerPath]: AuthApi.reducer,
-    // UserManagement: userManagementReducer,
-    // ProfileState: profileStateReducer,
+    [AuthApi.reducerPath]: AuthApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat
-      // UserManagementApi.middleware,
-      // AuthApi.middleware
-      (),
+    getDefaultMiddleware().concat(AuthApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

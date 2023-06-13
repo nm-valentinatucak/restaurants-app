@@ -8,6 +8,9 @@ import { Input } from '@progress/kendo-react-inputs';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 
+import { setUserToStorage } from '../../../../app/services';
+import { LoginProps } from '../../../../types/typeDefinitions';
+import { useLoginUserMutation } from '../../hooks/AuthApi';
 import logo from '../../../../assets/logo.png';
 
 import styles from './LoginForm.module.scss';
@@ -15,9 +18,35 @@ import styles from './LoginForm.module.scss';
 const LoginForm = () => {
   const navigateTo = useNavigate();
 
-  const handleSubmit = (dataItem: { [name: string]: void }) => {
-    alert(JSON.stringify(dataItem, null, 2));
-    navigateTo('/dashboard');
+  const [loginUser] = useLoginUserMutation();
+
+  const handleSubmit = async (dataItem: { [name: string]: any }) => {
+    try {
+      const formData: LoginProps = {
+        loginCredential: dataItem.email,
+        password: dataItem.password,
+      };
+      await handleFormSubmit(formData);
+    } catch (error: any) {
+      window.alert(error);
+    }
+  };
+
+  const handleFormSubmit = async (data: LoginProps) => {
+    try {
+      const loginAttempt = await loginUser({
+        password: data?.password as string,
+        loginCredential: data?.loginCredential,
+      }).unwrap();
+
+      if (loginAttempt) {
+        navigateTo('/dashboard');
+        window.alert('success');
+        setUserToStorage(loginAttempt);
+      }
+    } catch (error: any) {
+      window.alert(error);
+    }
   };
 
   const emailRegex = new RegExp(/\S+@\S+\.\S+/);
@@ -60,7 +89,7 @@ const LoginForm = () => {
                 'k-button k-button-md k-rounded-md k-button-solid k-button-solid-base',
                 styles.button
               )}
-              //   disabled={!formRenderProps.allowSubmit}
+              disabled={!formRenderProps.allowSubmit}
             >
               Log In
             </button>

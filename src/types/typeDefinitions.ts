@@ -20,6 +20,18 @@ export interface User {
   repeatPassword?: string;
 }
 
+export interface LoginProps {
+  loginCredential: string;
+  password: string;
+}
+
+export interface ChangePasswordProps {
+  id: number;
+  oldPassword: string;
+  newPassword: string;
+  repeatPassword?: string;
+}
+
 export interface AddEditUserModalProps {
   isOpen: boolean;
   closeModal: () => void;
