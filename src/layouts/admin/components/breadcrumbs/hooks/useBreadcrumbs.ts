@@ -1,70 +1,44 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { useMemo } from 'react';
+import { CustomRouteObject } from '../../../../../types/typeDefinitions';
 
-interface BreadcrumbItem {
+type DrawerItem = CustomRouteObject & {
+  items?: DrawerItem[];
+};
+
+type NavConfig = DrawerItem[];
+
+type BreadcrumbItem = {
   id: string;
-  name: string;
+  text: string;
   iconClass?: string;
-}
+};
 
-interface BreadcrumbsResult {
-  breadcrumbs: BreadcrumbItem[];
-}
-
-export const useBreadcrumbs = (navConfig: any): BreadcrumbsResult => {
+export const useBreadcrumbs = (navConfig: NavConfig) => {
   const { pathname } = useLocation();
-  const breadcrumbs = useMemo(() => {
+
+  const breadcrumbs = useMemo<BreadcrumbItem[]>(() => {
     const pathParts = pathname.split('/').filter(Boolean);
-
-    // If there are no path parts it means we are on the home page.
-    // Therefore, we can skip all the logic and just return the first drawer item.
-    if (!pathParts.length) {
-      const home = navConfig[0];
-
-      return [
-        {
-          id: home.path,
-          name: home.name,
-          iconClass: home.icon,
-        },
-      ];
-    }
-
     const breadcrumbsList: BreadcrumbItem[] = [];
-    let currentPathPart: string | undefined;
-    let currentDrawerItem: any;
 
-    // We need to loop through all the url parts to find the correct drawer items.
-    while (pathParts.length) {
-      // During each loop, we remove the first url part
-      currentPathPart = pathParts.shift();
+    for (let i = 0; i < pathParts.length; i++) {
+      const currentPathPart = pathParts[i];
+      const currentDrawerItem = findDrawerItem(navConfig, currentPathPart);
 
-      // Find the root drawer item
-      if (!breadcrumbsList.length) {
-        currentDrawerItem = navConfig.find(
-          (item: any) => item.path === `/${currentPathPart}`
-        );
-      } else {
-        // The currentDrawerItem is a drawer item header so we need to find the matching drawer item inside of the `items` array
-        currentDrawerItem = currentDrawerItem.items.find(
-          (item: any) => item.path === currentPathPart
-        );
-      }
+      if (currentDrawerItem) {
+        breadcrumbsList.push({
+          id: currentDrawerItem.path as string,
+          text: currentDrawerItem.name,
+          ...(currentDrawerItem.icon && {
+            iconClass: currentDrawerItem.icon,
+          }),
+        });
 
-      // Add config for the current url path part
-      breadcrumbsList.push({
-        id: currentDrawerItem?.path,
-        name: currentDrawerItem?.name,
-        // Include the icon class if one is present
-        ...(currentDrawerItem?.icon && {
-          iconClass: currentDrawerItem?.icon,
-        }),
-      });
+        if (!currentDrawerItem.children) {
+          break;
+        }
 
-      // If the current drawer item doesn't have any nested items
-      // it means we need to stop, as we have reached the last navigation item
-      if (!currentDrawerItem?.children) {
-        break;
+        navConfig = currentDrawerItem.children;
       }
     }
 
@@ -74,4 +48,26 @@ export const useBreadcrumbs = (navConfig: any): BreadcrumbsResult => {
   return {
     breadcrumbs,
   };
+};
+
+const findDrawerItem = (
+  drawerItems: NavConfig,
+  route: string
+): DrawerItem | undefined => {
+  for (let i = 0; i < drawerItems.length; i++) {
+    const drawerItem = drawerItems[i];
+
+    if (drawerItem.path === route) {
+      return drawerItem;
+    }
+
+    if (drawerItem.children) {
+      const childItem = findDrawerItem(drawerItem.children, route);
+      if (childItem) {
+        return childItem;
+      }
+    }
+  }
+
+  return undefined;
 };
