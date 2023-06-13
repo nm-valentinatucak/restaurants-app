@@ -1,4 +1,5 @@
 import AdminLayout from '../layouts/admin/AdminLayout';
+import UserManagement from '../layouts/admin/features/UserManagement/UserManagement';
 import AuthLayout from '../layouts/auth/AuthLayout';
 import { CustomRouteObject } from '../types/typeDefinitions';
 import ProtectedRoute from './ProtectedRoute';
@@ -28,12 +29,13 @@ export const Routes: CustomRouteObject[] = [
       {
         path: 'user-management',
         name: 'User Management',
-        icon: 'k-i-user',
-        element: <div>User management</div>,
+        icon: 'k-i-grid-layout',
+        element: <UserManagement />,
       },
       {
         path: 'profile',
         name: 'Profile',
+        icon: 'k-i-user',
         element: <div>Profile</div>,
       },
     ],
