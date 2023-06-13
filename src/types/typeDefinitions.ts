@@ -7,6 +7,11 @@ export interface CustomRouteObject extends NonIndexRouteObject {
   invisible?: boolean;
 }
 
+export interface Lookup {
+  id: number;
+  name: string;
+}
+
 export interface User {
   userName: string;
   fullName: string;
@@ -38,4 +43,13 @@ export interface AddEditUserModalProps {
   modalType?: number;
   user?: User;
   setUser?: (user?: User) => void;
+}
+
+export interface RoleData {
+  userId: number;
+  roleId: number;
+}
+
+export interface UsersList {
+  users: User[];
 }
