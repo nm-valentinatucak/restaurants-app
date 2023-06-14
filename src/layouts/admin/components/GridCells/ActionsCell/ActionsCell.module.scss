@@ -1,0 +1,14 @@
+.buttonsWrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  .button {
+    background-color: transparent;
+    border: none;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+}

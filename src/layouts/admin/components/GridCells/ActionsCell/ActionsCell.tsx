@@ -1,3 +1,5 @@
+import styles from './ActionsCell.module.scss';
+
 const ActionsCell = (props: any) => {
   const onEditClick = () => {
     props.handleEdit();
@@ -9,15 +11,23 @@ const ActionsCell = (props: any) => {
 
   return (
     <td>
-      <div>
+      <div className={styles.buttonsWrapper}>
         {props.hasEditCommand && (
-          <button aria-label='Edit' onClick={onEditClick}>
-            <span className='k-icon k-i-edit' />
+          <button
+            aria-label='Edit'
+            onClick={onEditClick}
+            className={styles.button}
+          >
+            <span className={'k-icon k-i-edit'} />
           </button>
         )}
 
         {props.hasDeleteCommand && (
-          <button aria-label='Delete' onClick={onDeleteClick}>
+          <button
+            aria-label='Delete'
+            onClick={onDeleteClick}
+            className={styles.button}
+          >
             <span className='k-icon k-i-trash' />
           </button>
         )}
