@@ -12,8 +12,13 @@ import { NavLink } from 'react-router-dom';
 import placeholder from '../../../../assets/placeholder.jpg';
 
 import styles from './Header.module.scss';
+import { removeUserFromStorage } from '../../../../app/services';
 
 const Header = () => {
+  const handleLogout = () => {
+    removeUserFromStorage();
+  };
+
   return (
     <div>
       <AppBar className={styles.header}>
@@ -61,7 +66,11 @@ const Header = () => {
               <MenuItem
                 render={() => {
                   return (
-                    <NavLink to={'/login'} className={styles.navLink}>
+                    <NavLink
+                      to={'/login'}
+                      className={styles.navLink}
+                      onClick={() => handleLogout()}
+                    >
                       Logout
                     </NavLink>
                   );
