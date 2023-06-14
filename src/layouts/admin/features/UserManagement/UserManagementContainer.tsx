@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Grid, GridColumn, GridToolbar } from '@progress/kendo-react-grid';
 import clsx from 'clsx';
 
 import {
@@ -13,8 +12,9 @@ import {
 } from '../../../../app/services';
 import { User } from '../../../../types/typeDefinitions';
 import AddEditUserModal from './components/AddEditUserModal/AddEditUserModal';
+import UserManagementGrid from './components/UserManagementGrid/UserManagementGrid';
 
-import styles from './UserManagement.module.scss';
+import styles from './UserManagementContainer.module.scss';
 
 const UserManagementContainer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,30 +81,13 @@ const UserManagementContainer = () => {
         setUser={setUser}
       />
 
-      <Grid
-        sortable={true}
-        reorderable={true}
+      <UserManagementGrid
         data={usersList}
-        pageable={{ buttonCount: 4, pageSizes: true }}
-        resizable
-      >
-        <GridToolbar>
-          <button
-            className={clsx(
-              'k-button k-button-md k-rounded-md k-button-solid',
-              styles.button
-            )}
-            onClick={() => openModal(1)}
-          >
-            Add new
-          </button>
-        </GridToolbar>
-
-        <GridColumn field='id' title='ID' />
-        <GridColumn field='userName' title='Username' />
-        <GridColumn field='fullName' title='Full name' />
-        <GridColumn field='role.name' title='Role' />
-      </Grid>
+        openModal={openModal}
+        loggedUser={loggedUser}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </>
   );
 };
